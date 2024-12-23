@@ -1,40 +1,30 @@
 package server
 
 import (
-	"encoding/json"
+	"github.com/gorilla/mux"
 	"log"
 	"net/http"
-
-	"github.com/a-h/templ"
-	"github.com/gorilla/mux"
-	"ui-server/cmd/web"
+	"ui-server/web"
 )
 
+// Simple Middleware for logging
+func loggingMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		log.Printf("Request: %s %s", r.Method, r.URL.Path)
+		next.ServeHTTP(w, r) // Call the next handler in the chain
+	})
+}
 func (s *Server) RegisterRoutes() http.Handler {
 	r := mux.NewRouter()
-
-	r.HandleFunc("/", s.HelloWorldHandler)
-
 	fileServer := http.FileServer(http.FS(web.Files))
+	r.NotFoundHandler = http.HandlerFunc(web.NotFoundHandler)
+	r.MethodNotAllowedHandler = http.HandlerFunc(web.MethodNotAllowedHandler)
 	r.PathPrefix("/assets/").Handler(fileServer)
-
-	r.HandleFunc("/web", func(w http.ResponseWriter, r *http.Request) {
-		templ.Handler(web.HelloForm()).ServeHTTP(w, r)
-	})
-
-	r.HandleFunc("/hello", web.HelloWebHandler)
-
+	r.HandleFunc("/", web.HomeHandler).Methods(http.MethodGet)
+	r.HandleFunc("/order", web.OrderHandler).Methods(http.MethodGet)
+	r.HandleFunc("/product", web.ProductHandler).Methods(http.MethodGet)
+	r.HandleFunc("/customer", web.CustomerHandler).Methods(http.MethodGet)
+	r.HandleFunc("/hello", web.HelloHandler).Methods(http.MethodPost)
+	r.Use(loggingMiddleware)
 	return r
-}
-
-func (s *Server) HelloWorldHandler(w http.ResponseWriter, r *http.Request) {
-	resp := make(map[string]string)
-	resp["message"] = "Hello World"
-
-	jsonResp, err := json.Marshal(resp)
-	if err != nil {
-		log.Fatalf("error handling JSON marshal. Err: %v", err)
-	}
-
-	_, _ = w.Write(jsonResp)
 }

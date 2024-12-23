@@ -7,18 +7,16 @@ build:
 	@echo "Building..."
 	@templ generate
 	
-	@go build -o main cmd/api/main.go
+	@go build -o main main.go
 
 # Run the application
 run:
-	@go run cmd/api/main.go
-
-
+	@go run main.go
 
 # Test the application
 test:
 	@echo "Testing..."
-	@go test ./tests -v
+	@go test ./test -v
 
 # Clean the binary
 clean:

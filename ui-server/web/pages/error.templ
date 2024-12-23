@@ -1,0 +1,13 @@
+package pages
+
+import "ui-server/web/layouts"
+
+templ Error(message string) {
+	@layouts.Base() {
+		<div>
+			<p>
+				{ message }
+			</p>
+		</div>
+	}
+}

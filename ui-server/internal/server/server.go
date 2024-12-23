@@ -2,12 +2,11 @@ package server
 
 import (
 	"fmt"
+	_ "github.com/joho/godotenv/autoload"
 	"net/http"
 	"os"
 	"strconv"
 	"time"
-
-	_ "github.com/joho/godotenv/autoload"
 )
 
 type Server struct {
