@@ -14,7 +14,9 @@ import (
 
 func main() {
 	port := os.Getenv("PORT")
-	client.InitCustomerService(os.Getenv("CUSTOMER_SERVICE_ADDR"))
+	client.InitCustomerClient(os.Getenv("CUSTOMER_SERVICE_ADDR"))
+	client.InitOrderClient(os.Getenv("ORDER_SERVICE_ADDR"))
+	client.InitProductClient(os.Getenv("PRODUCT_SERVICE_ADDR"))
 	srv := handler.NewDefaultServer(graph.NewExecutableSchema(graph.Config{Resolvers: &graph.Resolver{}}))
 	http.Handle("/", playground.Handler("GraphQL playground", "/query"))
 	http.Handle("/query", srv)
