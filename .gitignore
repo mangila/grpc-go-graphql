@@ -2,7 +2,7 @@
 # https://github.com/github/gitignore/blob/main/community/Golang/Go.AllowList.gitignore
 #
 # go sum
-go.sum
+*go.sum
 # Binaries for programs and plugins
 .idea
 *.exe
