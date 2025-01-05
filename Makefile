@@ -1,7 +1,52 @@
-proto-compile: proto-compile-service proto-compile-model
+# Root Makefile
 
+ORDER_SERVICE_DIR := order-service
+CUSTOMER_SERVICE_DIR := customer-service
+PRODUCT_SERVICE_DIR := product-service
+GRAPHQL_SERVER_DIR := graphql-server
+UI_SERVER_DIR := ui-server
+
+# run from root file
+run-order-service:
+	@$(MAKE) run -C $(ORDER_SERVICE_DIR)
+run-customer-service:
+	@$(MAKE) run -C $(CUSTOMER_SERVICE_DIR)
+run-product-service:
+	@$(MAKE) run -C $(PRODUCT_SERVICE_DIR)
+run-graphql-server:
+	 @$(MAKE) run -C $(GRAPHQL_SERVER_DIR)
+run-ui-server:
+	 @$(MAKE) run -C $(UI_SERVER_DIR)
+
+# build from root file
+build-all: build-order-service build-customer-service build-product-service build-graphql-server build-ui-server
+build-order-service:
+	@$(MAKE) build -C $(ORDER_SERVICE_DIR)
+build-customer-service:
+	@$(MAKE) build -C $(CUSTOMER_SERVICE_DIR)
+build-product-service:
+	@$(MAKE) build -C $(PRODUCT_SERVICE_DIR)
+build-graphql-server:
+	@$(MAKE) build -C $(GRAPHQL_SERVER_DIR)
+build-ui-server:
+	@$(MAKE) build -C $(UI_SERVER_DIR)
+
+# clean from root file
+clean-all: clean-order-service clean-customer-service clean-product-service clean-graphql-server clean-ui-server
+clean-order-service:
+	@$(MAKE) clean -C $(ORDER_SERVICE_DIR)
+clean-customer-service:
+	@$(MAKE) clean -C $(CUSTOMER_SERVICE_DIR)
+clean-product-service:
+	@$(MAKE) clean -C $(PRODUCT_SERVICE_DIR)
+clean-graphql-server:
+	@$(MAKE) clean -C $(GRAPHQL_SERVER_DIR)
+clean-ui-server:
+	@$(MAKE) clean -C $(UI_SERVER_DIR)
+
+# compile protos
+proto-compile-all: proto-compile-service proto-compile-model
 proto-compile-service:
 	 protoc --proto_path=shared/proto --go_out=paths=source_relative:./shared/service --go-grpc_out=paths=source_relative:./shared/service shared/proto/*.service.proto
-
 proto-compile-model:
 	protoc --proto_path=shared/proto --go_out=paths=source_relative:./shared/model shared/proto/*.model.proto

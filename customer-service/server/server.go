@@ -8,15 +8,13 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/metadata"
 	"net"
-	"os"
 	"shared/logger"
 	"shared/service"
 	"time"
 )
 
 // Init - init the grpc server
-func Init() {
-	port := os.Getenv("PORT")
+func Init(port string) {
 	listener, err := net.Listen("tcp", fmt.Sprintf(":%s", port))
 	if err != nil {
 		logger.Logger.Fatalf("failed to create listener on port:  %s - %v", port, err)

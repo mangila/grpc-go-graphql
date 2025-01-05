@@ -2,9 +2,7 @@ package database
 
 import (
 	"database/sql"
-	_ "github.com/joho/godotenv/autoload"
 	_ "github.com/mattn/go-sqlite3"
-	"os"
 	"shared/logger"
 	"time"
 )
@@ -12,9 +10,8 @@ import (
 var Connection *sql.DB
 
 // Init - create connection to the database server
-func Init() {
+func Init(dbName string) {
 	var err error
-	dbName := os.Getenv("DATABASE_NAME")
 	Connection, err = sql.Open("sqlite3", dbName)
 	if err != nil {
 		logger.Logger.Fatalf("failed to connect to sqlite3 - %s", dbName)

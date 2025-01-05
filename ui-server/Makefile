@@ -4,9 +4,8 @@
 all: build
 
 build:
-	@echo "Building..."
+	@echo "build ui-server"
 	@templ generate
-	
 	@go build -o main main.go
 
 # Run the application
@@ -20,7 +19,7 @@ test:
 
 # Clean the binary
 clean:
-	@echo "Cleaning..."
+	@echo "clean ui-server"
 	@rm -f main
 
 # Live Reload
