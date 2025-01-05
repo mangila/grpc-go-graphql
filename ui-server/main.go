@@ -2,13 +2,15 @@ package main
 
 import (
 	"fmt"
+	"shared/logger"
 	"ui-server/internal/server"
 )
 
 func main() {
-	server := server.NewServer()
-	err := server.ListenAndServe()
+	srv := server.NewServer()
+	fmt.Printf("ui-server - %s", srv.Addr)
+	err := srv.ListenAndServe()
 	if err != nil {
-		panic(fmt.Sprintf("cannot start server: %s", err))
+		logger.Logger.Fatalf("cannot start server: %s", err)
 	}
 }

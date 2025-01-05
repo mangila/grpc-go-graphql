@@ -1,0 +1,35 @@
+syntax = 'proto3';
+import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
+import "order.model.proto";
+
+package model;
+
+option go_package = "shared/service";
+
+message GetAllOrdersResponse {
+  repeated Order orders = 1;
+}
+
+service OrderQueryService {
+  rpc getOrder(google.protobuf.StringValue) returns (Order);
+  rpc getAllOrders(google.protobuf.Empty) returns (GetAllOrdersResponse);
+}
+
+message CreateOrderRequest {
+  string customerId = 1;
+  repeated string productIds = 2;
+  double total = 3;
+  string status = 4;
+}
+
+message UpdateOrderRequest {
+  string id = 1;
+  string status = 2;
+}
+
+service OrderCommandService {
+  rpc createOrder(CreateOrderRequest) returns (Order);
+  rpc updateOrder(UpdateOrderRequest) returns (Order);
+  rpc deleteOrder(google.protobuf.StringValue) returns (google.protobuf.BoolValue);
+}

@@ -2,18 +2,20 @@ package server
 
 import (
 	"github.com/gorilla/mux"
-	"log"
 	"net/http"
+	"shared/logger"
 	"ui-server/web"
 )
 
-// Simple Middleware for logging
+// loggingMiddleware - Simple Middleware for logging
 func loggingMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		log.Printf("Request: %s %s", r.Method, r.URL.Path)
+		logger.Logger.Infof("Request: %s %s", r.Method, r.URL.Path)
 		next.ServeHTTP(w, r) // Call the next handler in the chain
 	})
 }
+
+// RegisterRoutes - register server routes and add web handlers
 func (s *Server) RegisterRoutes() http.Handler {
 	r := mux.NewRouter()
 	fileServer := http.FileServer(http.FS(web.Files))

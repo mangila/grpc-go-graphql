@@ -19,18 +19,18 @@ The graphql server that serves data to the ui and fetches data from the microser
 
 ## customer-service
 
-gRPC service with a SQLite database that holds the customer domain
+Unary gRPC service with a SQLite database that holds the customer domain
 
 ## order-service
 
-gRPC service with a SQLite database that holds the order domain
+Unary gRPC service with a SQLite database that holds the order domain
 
 ## product-service
 
-gRPC service with a SQLite database that holds the product domain
+Unary gRPC service with a SQLite database that holds the product domain
 
 ## shared
 
-library with shared go files around the project
+library with shared go files for the project
 
 
