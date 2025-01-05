@@ -1,0 +1,17 @@
+syntax = 'proto3';
+import "customer.model.proto";
+import "product.model.proto";
+
+package model;
+
+option go_package = "shared/model";
+
+
+message Order {
+  string id = 1;
+  Customer customer = 2;
+  repeated Product products = 3;
+  double total = 4;
+  string status = 5;
+  string createdAt = 6;
+}

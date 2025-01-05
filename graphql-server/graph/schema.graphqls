@@ -1,28 +1,63 @@
-# GraphQL schema example
-#
-# https://gqlgen.com/getting-started/
-
-type Todo {
-  id: ID!
-  text: String!
-  done: Boolean!
-  user: User!
-}
-
-type User {
-  id: ID!
-  name: String!
+# Customer : START
+type Customer {
+    id: ID!
+    name: String!
+    email: String!
+    phone: String
+    address: String
 }
 
 type Query {
-  todos: [Todo!]!
-}
-
-input NewTodo {
-  text: String!
-  userId: String!
+    getCustomer(id: ID!): Customer
+    getAllCustomers: [Customer!]
 }
 
 type Mutation {
-  createTodo(input: NewTodo!): Todo!
+    createCustomer(name: String!, email: String!, phone: String, address: String): Customer
+    updateCustomer(id: ID!, name: String, email: String, phone: String, address: String): Customer
+    deleteCustomer(id: ID!): Boolean
 }
+# Customer : END
+
+# Order : START
+type Order {
+    id: ID!
+    customer: Customer!
+    products: [Product!]!
+    total: Float!
+    status: String!
+    createdAt: String!
+}
+
+extend type Query {
+    getOrder(id: ID!): Order
+    getAllOrders: [Order!]
+}
+
+extend type Mutation {
+    createOrder(customerId: ID!, productIds: [ID!]!, total: Float!, status: String!): Order
+    updateOrder(id: ID!, status: String): Order
+    deleteOrder(id: ID!): Boolean
+}
+# Order : END
+
+# Product : START
+type Product {
+    id: ID!
+    name: String!
+    description: String
+    price: Float!
+    stock: Int!
+}
+
+extend type Query {
+    getProduct(id: ID!): Product
+    getAllProducts: [Product!]
+}
+
+extend type Mutation {
+    createProduct(name: String!, description: String, price: Float!, stock: Int!): Product
+    updateProduct(id: ID!, name: String, description: String, price: Float, stock: Int): Product
+    deleteProduct(id: ID!): Boolean
+}
+# Product : END

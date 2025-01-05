@@ -7,17 +7,82 @@ package graph
 import (
 	"context"
 	"fmt"
-	"graphql-server/graph/model"
+	"shared/model"
 )
 
-// CreateTodo is the resolver for the createTodo field.
-func (r *mutationResolver) CreateTodo(ctx context.Context, input model.NewTodo) (*model.Todo, error) {
-	panic(fmt.Errorf("not implemented: CreateTodo - createTodo"))
+// CreateCustomer is the resolver for the createCustomer field.
+func (r *mutationResolver) CreateCustomer(ctx context.Context, name string, email string, phone *string, address *string) (*model.Customer, error) {
+	panic(fmt.Errorf("not implemented: CreateCustomer - createCustomer"))
 }
 
-// Todos is the resolver for the todos field.
-func (r *queryResolver) Todos(ctx context.Context) ([]*model.Todo, error) {
-	panic(fmt.Errorf("not implemented: Todos - todos"))
+// UpdateCustomer is the resolver for the updateCustomer field.
+func (r *mutationResolver) UpdateCustomer(ctx context.Context, id string, name *string, email *string, phone *string, address *string) (*model.Customer, error) {
+	panic(fmt.Errorf("not implemented: UpdateCustomer - updateCustomer"))
+}
+
+// DeleteCustomer is the resolver for the deleteCustomer field.
+func (r *mutationResolver) DeleteCustomer(ctx context.Context, id string) (*bool, error) {
+	panic(fmt.Errorf("not implemented: DeleteCustomer - deleteCustomer"))
+}
+
+// CreateOrder is the resolver for the createOrder field.
+func (r *mutationResolver) CreateOrder(ctx context.Context, customerID string, productIds []string, total float64, status string) (*model.Order, error) {
+	panic(fmt.Errorf("not implemented: CreateOrder - createOrder"))
+}
+
+// UpdateOrder is the resolver for the updateOrder field.
+func (r *mutationResolver) UpdateOrder(ctx context.Context, id string, status *string) (*model.Order, error) {
+	panic(fmt.Errorf("not implemented: UpdateOrder - updateOrder"))
+}
+
+// DeleteOrder is the resolver for the deleteOrder field.
+func (r *mutationResolver) DeleteOrder(ctx context.Context, id string) (*bool, error) {
+	panic(fmt.Errorf("not implemented: DeleteOrder - deleteOrder"))
+}
+
+// CreateProduct is the resolver for the createProduct field.
+func (r *mutationResolver) CreateProduct(ctx context.Context, name string, description *string, price float64, stock int) (*model.Product, error) {
+	panic(fmt.Errorf("not implemented: CreateProduct - createProduct"))
+}
+
+// UpdateProduct is the resolver for the updateProduct field.
+func (r *mutationResolver) UpdateProduct(ctx context.Context, id string, name *string, description *string, price *float64, stock *int) (*model.Product, error) {
+	panic(fmt.Errorf("not implemented: UpdateProduct - updateProduct"))
+}
+
+// DeleteProduct is the resolver for the deleteProduct field.
+func (r *mutationResolver) DeleteProduct(ctx context.Context, id string) (*bool, error) {
+	panic(fmt.Errorf("not implemented: DeleteProduct - deleteProduct"))
+}
+
+// GetCustomer is the resolver for the getCustomer field.
+func (r *queryResolver) GetCustomer(ctx context.Context, id string) (*model.Customer, error) {
+	panic(fmt.Errorf(id))
+}
+
+// GetAllCustomers is the resolver for the getAllCustomers field.
+func (r *queryResolver) GetAllCustomers(ctx context.Context) ([]*model.Customer, error) {
+	panic(fmt.Errorf("not implemented: GetAllCustomers - getAllCustomers"))
+}
+
+// GetOrder is the resolver for the getOrder field.
+func (r *queryResolver) GetOrder(ctx context.Context, id string) (*model.Order, error) {
+	panic(fmt.Errorf("not implemented: GetOrder - getOrder"))
+}
+
+// GetAllOrders is the resolver for the getAllOrders field.
+func (r *queryResolver) GetAllOrders(ctx context.Context) ([]*model.Order, error) {
+	panic(fmt.Errorf("not implemented: GetAllOrders - getAllOrders"))
+}
+
+// GetProduct is the resolver for the getProduct field.
+func (r *queryResolver) GetProduct(ctx context.Context, id string) (*model.Product, error) {
+	panic(fmt.Errorf("not implemented: GetProduct - getProduct"))
+}
+
+// GetAllProducts is the resolver for the getAllProducts field.
+func (r *queryResolver) GetAllProducts(ctx context.Context) ([]*model.Product, error) {
+	panic(fmt.Errorf("not implemented: GetAllProducts - getAllProducts"))
 }
 
 // Mutation returns MutationResolver implementation.

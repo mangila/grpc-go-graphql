@@ -1,0 +1,32 @@
+syntax = 'proto3';
+import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
+import "product.model.proto";
+
+package model;
+
+option go_package = "shared/service";
+
+
+message GetAllProductsResponse {
+  repeated Product products = 1;
+}
+
+service ProductQueryService {
+  rpc getProduct(google.protobuf.StringValue) returns (Product);
+  rpc getAllProducts(google.protobuf.Empty) returns (GetAllProductsResponse);
+}
+
+message CommandProductRequest {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  double price = 4;
+  int32 stock = 5;
+}
+
+service ProductCommandService {
+  rpc createProduct(CommandProductRequest) returns (Product);
+  rpc updateProduct(CommandProductRequest) returns (Product);
+  rpc deleteProduct(google.protobuf.StringValue) returns (google.protobuf.BoolValue);
+}
