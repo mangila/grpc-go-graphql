@@ -2,9 +2,9 @@ package repository
 
 import (
 	"context"
-	"github.com/golang/protobuf/ptypes/wrappers"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
+	"google.golang.org/protobuf/types/known/wrapperspb"
 	"shared/model"
 	"shared/service"
 )
@@ -20,6 +20,6 @@ func (s *GrpcCommandService) CreateProduct(context.Context, *service.CommandProd
 func (s *GrpcCommandService) UpdateProduct(context.Context, *service.CommandProductRequest) (*model.Product, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateProduct not implemented")
 }
-func (s *GrpcCommandService) DeleteProduct(context.Context, *wrappers.StringValue) (*wrappers.BoolValue, error) {
+func (s *GrpcCommandService) DeleteProduct(context.Context, *wrapperspb.StringValue) (*wrapperspb.BoolValue, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteProduct not implemented")
 }

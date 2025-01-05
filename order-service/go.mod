@@ -3,7 +3,6 @@ module order-service
 go 1.23.2
 
 require (
-	github.com/golang/protobuf v1.5.4
 	github.com/joho/godotenv v1.5.1
 	github.com/mattn/go-sqlite3 v1.14.24
 	google.golang.org/grpc v1.69.2

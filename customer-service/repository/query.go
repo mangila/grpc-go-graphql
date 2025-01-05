@@ -2,10 +2,10 @@ package repository
 
 import (
 	"context"
-	"github.com/golang/protobuf/ptypes/empty"
-	"github.com/golang/protobuf/ptypes/wrappers"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
+	"google.golang.org/protobuf/types/known/emptypb"
+	"google.golang.org/protobuf/types/known/wrapperspb"
 	"shared/model"
 	"shared/service"
 )
@@ -15,9 +15,9 @@ type GrpcQueryService struct {
 	service.UnimplementedCustomerQueryServiceServer
 }
 
-func (s *GrpcQueryService) GetCustomer(context.Context, *wrappers.StringValue) (*model.Customer, error) {
+func (s *GrpcQueryService) GetCustomer(context.Context, *wrapperspb.StringValue) (*model.Customer, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCustomer not implemented")
 }
-func (s *GrpcQueryService) GetAllCustomers(context.Context, *empty.Empty) (*service.GetAllCustomersResponse, error) {
+func (s *GrpcQueryService) GetAllCustomers(context.Context, *emptypb.Empty) (*service.GetAllCustomersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAllCustomers not implemented")
 }
