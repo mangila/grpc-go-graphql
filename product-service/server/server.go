@@ -40,7 +40,6 @@ func UnaryLoggingInterceptor(
 	handler grpc.UnaryHandler,
 ) (interface{}, error) {
 	start := time.Now()
-
 	// Log request details
 	entry := logger.Logger.WithFields(logrus.Fields{
 		"method": info.FullMethod,

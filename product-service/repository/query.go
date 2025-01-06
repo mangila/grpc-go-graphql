@@ -15,7 +15,7 @@ type GrpcQueryService struct {
 	service.UnimplementedProductQueryServiceServer
 }
 
-func (s *GrpcQueryService) GetProduct(context.Context, *wrapperspb.StringValue) (*model.Product, error) {
+func (s *GrpcQueryService) GetProduct(ctx context.Context, productId *wrapperspb.StringValue) (*model.Product, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetProduct not implemented")
 }
 func (s *GrpcQueryService) GetAllProducts(context.Context, *emptypb.Empty) (*service.GetAllProductsResponse, error) {

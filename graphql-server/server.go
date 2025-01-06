@@ -10,6 +10,7 @@ import (
 	_ "github.com/joho/godotenv/autoload"
 	"github.com/sirupsen/logrus"
 	"github.com/vektah/gqlparser/v2/gqlerror"
+	"google.golang.org/grpc/metadata"
 	"graphql-server/client"
 	"graphql-server/graph"
 	"graphql-server/resolver"
@@ -27,22 +28,32 @@ func main() {
 	// error middleware
 	srv.SetErrorPresenter(func(ctx context.Context, e error) *gqlerror.Error {
 		err := graphql.DefaultErrorPresenter(ctx, e)
+		md, _ := metadata.FromOutgoingContext(ctx)
+		invocationId := md.Get("invocation-id")
+		// Add custom fields to the error for the client
+		if err.Extensions == nil {
+			err.Extensions = map[string]interface{}{}
+		}
+		err.Extensions["invocation-id"] = invocationId
+		// log error
 		logger.Logger.WithFields(logrus.Fields{
-			"message":       err.Message,
-			"path":          err.Path,
-			"locations":     err.Locations,
-			"extensions":    err.Extensions,
-			"rule":          err.Rule,
-			"invocation_id": ctx.Value("invocation_id"),
+			"message":    err.Message,
+			"path":       err.Path,
+			"locations":  err.Locations,
+			"extensions": err.Extensions,
+			"rule":       err.Rule,
 		}).Error()
 		return err
 	})
-	// log query and add an invocation_id for tracing
+	// log query and add an invocation-id for tracing
 	srv.AroundResponses(func(ctx context.Context, next graphql.ResponseHandler) *graphql.Response {
 		oc := graphql.GetOperationContext(ctx)
 		logger.Logger.Infof(oc.RawQuery)
-		resp := next(context.WithValue(ctx, "invocation_id", uuid.New()))
-		return resp
+		ctx = metadata.AppendToOutgoingContext(
+			ctx,
+			"invocation-id", uuid.New().String(),
+		)
+		return next(ctx)
 	})
 	http.Handle("/", playground.Handler("GraphQL playground", "/query"))
 	http.Handle("/query", srv)
