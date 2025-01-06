@@ -7,7 +7,9 @@ package resolver
 import (
 	"context"
 	"fmt"
+	"graphql-server/client"
 	"shared/model"
+	"time"
 )
 
 // CreateProduct is the resolver for the createProduct field.
@@ -27,10 +29,20 @@ func (r *mutationResolver) DeleteProduct(ctx context.Context, productID string) 
 
 // GetProduct is the resolver for the getProduct field.
 func (r *queryResolver) GetProduct(ctx context.Context, productID string) (*model.Product, error) {
-	panic(fmt.Errorf("not implemented: GetProduct - getProduct"))
+	response, err := client.GetProduct(productID)
+	if err != nil {
+		return nil, err
+	}
+	return response, nil
 }
 
 // GetAllProducts is the resolver for the getAllProducts field.
 func (r *queryResolver) GetAllProducts(ctx context.Context) ([]*model.Product, error) {
-	panic(fmt.Errorf("not implemented: GetAllProducts - getAllProducts"))
+	ctx, cancel := context.WithTimeout(ctx, time.Minute)
+	defer cancel()
+	response, err := client.GetAllProducts(ctx)
+	if err != nil {
+		return nil, err
+	}
+	return response.Products, nil
 }

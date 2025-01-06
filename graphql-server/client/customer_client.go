@@ -1,11 +1,16 @@
 package client
 
 import (
+	"context"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/backoff"
 	"google.golang.org/grpc/credentials/insecure"
+	_ "google.golang.org/grpc/encoding/gzip"
 	"google.golang.org/grpc/keepalive"
+	"google.golang.org/protobuf/types/known/emptypb"
+	"google.golang.org/protobuf/types/known/wrapperspb"
 	"shared/logger"
+	"shared/model"
 	"shared/service"
 	"time"
 )
@@ -47,4 +52,24 @@ func InitCustomerClient(customerServiceAddr string) {
 		command: service.NewCustomerCommandServiceClient(conn),
 	}
 	logger.Logger.Infof("connected to CUSTOMER_SERVICE - %s", customerServiceAddr)
+}
+
+func GetCustomer(customerId string) (*model.Customer, error) {
+	ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
+	defer cancel()
+	return customerClientInstance.query.GetCustomer(
+		ctx,
+		wrapperspb.String(customerId),
+		grpc.WaitForReady(true),
+		grpc.UseCompressor("gzip"))
+}
+
+func GetAllCustomers() (*service.GetAllCustomersResponse, error) {
+	ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
+	defer cancel()
+	return customerClientInstance.query.GetAllCustomers(
+		ctx,
+		&emptypb.Empty{},
+		grpc.WaitForReady(true),
+		grpc.UseCompressor("gzip"))
 }

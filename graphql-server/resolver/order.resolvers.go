@@ -7,6 +7,7 @@ package resolver
 import (
 	"context"
 	"fmt"
+	"graphql-server/client"
 	"graphql-server/graph"
 	"shared/model"
 )
@@ -38,12 +39,20 @@ func (r *orderResolver) PaymentMethod(ctx context.Context, obj *model.Order) (st
 
 // GetOrder is the resolver for the getOrder field.
 func (r *queryResolver) GetOrder(ctx context.Context, orderID string) (*model.Order, error) {
-	panic(fmt.Errorf("not implemented: GetOrder - getOrder"))
+	response, err := client.GetOrder(orderID)
+	if err != nil {
+		return nil, err
+	}
+	return response, nil
 }
 
 // GetAllOrders is the resolver for the getAllOrders field.
 func (r *queryResolver) GetAllOrders(ctx context.Context) ([]*model.Order, error) {
-	panic(fmt.Errorf("not implemented: GetAllOrders - getAllOrders"))
+	response, err := client.GetAllOrders()
+	if err != nil {
+		return nil, err
+	}
+	return response.Orders, nil
 }
 
 // Order returns graph.OrderResolver implementation.

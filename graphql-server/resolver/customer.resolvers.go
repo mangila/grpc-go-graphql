@@ -7,6 +7,7 @@ package resolver
 import (
 	"context"
 	"fmt"
+	"graphql-server/client"
 	"graphql-server/graph"
 	"shared/model"
 )
@@ -28,12 +29,20 @@ func (r *mutationResolver) DeleteCustomer(ctx context.Context, customerID string
 
 // GetCustomer is the resolver for the getCustomer field.
 func (r *queryResolver) GetCustomer(ctx context.Context, customerID string) (*model.Customer, error) {
-	panic(fmt.Errorf("not implemented: GetCustomer - getCustomer"))
+	response, err := client.GetCustomer(customerID)
+	if err != nil {
+		return nil, err
+	}
+	return response, nil
 }
 
 // GetAllCustomers is the resolver for the getAllCustomers field.
 func (r *queryResolver) GetAllCustomers(ctx context.Context) ([]*model.Customer, error) {
-	panic(fmt.Errorf("not implemented: GetAllCustomers - getAllCustomers"))
+	response, err := client.GetAllCustomers()
+	if err != nil {
+		return nil, err
+	}
+	return response.Customers, nil
 }
 
 // Mutation returns graph.MutationResolver implementation.
