@@ -29,7 +29,9 @@ func (r *mutationResolver) DeleteProduct(ctx context.Context, productID string) 
 
 // GetProduct is the resolver for the getProduct field.
 func (r *queryResolver) GetProduct(ctx context.Context, productID string) (*model.Product, error) {
-	response, err := client.GetProduct(productID)
+	ctx, cancel := context.WithTimeout(ctx, time.Minute)
+	defer cancel()
+	response, err := client.GetProduct(ctx, productID)
 	if err != nil {
 		return nil, err
 	}

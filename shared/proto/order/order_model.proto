@@ -1,7 +1,6 @@
 syntax = 'proto3';
 import "customer/customer_model.proto";
 import "product/product_model.proto";
-import "common/enum_model.proto";
 
 package order;
 
@@ -12,7 +11,22 @@ message Order {
   customer.Customer customer = 2;
   repeated product.Product products = 3;
   double total = 4;
-  common.OrderStatus status = 5;
-  common.PaymentMethod payment_method = 6;
+  OrderStatus status = 5;
+  PaymentMethod payment_method = 6;
   string created_at = 7;
+}
+
+enum OrderStatus {
+  PENDING = 0;
+  APPROVED = 1;
+  SHIPPED = 2;
+  DELIVERED = 3;
+  CANCELLED = 4;
+}
+
+enum PaymentMethod {
+  CREDIT_CARD = 0;
+  DEBIT_CARD = 1;
+  PAYPAL = 2;
+  BANK_TRANSFER = 3;
 }

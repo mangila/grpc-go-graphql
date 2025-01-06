@@ -54,9 +54,7 @@ func InitProductClient(productServiceAddr string) {
 	logger.Logger.Infof("connected to PRODUCT_SERVICE - %s", productServiceAddr)
 }
 
-func GetProduct(productId string) (*model.Product, error) {
-	ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
-	defer cancel()
+func GetProduct(ctx context.Context, productId string) (*model.Product, error) {
 	return productClientInstance.query.GetProduct(
 		ctx,
 		wrapperspb.String(productId),

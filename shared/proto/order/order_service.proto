@@ -2,7 +2,6 @@ syntax = 'proto3';
 import "google/protobuf/empty.proto";
 import "google/protobuf/wrappers.proto";
 import "order/order_model.proto";
-import "common/enum_model.proto";
 
 package order;
 
@@ -21,13 +20,13 @@ message CreateOrderRequest {
   string customer_id = 1;
   repeated string product_ids = 2;
   double total = 3;
-  common.OrderStatus status = 4;
-  common.PaymentMethod payment_method = 5;
+  order.OrderStatus status = 4;
+  order.PaymentMethod payment_method = 5;
 }
 
 message UpdateOrderRequest {
   string order_id = 1;
-  common.OrderStatus status = 2;
+  order.OrderStatus status = 2;
 }
 
 service OrderCommandService {

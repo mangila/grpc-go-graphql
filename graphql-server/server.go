@@ -6,6 +6,7 @@ import (
 	"github.com/99designs/gqlgen/graphql"
 	"github.com/99designs/gqlgen/graphql/handler"
 	"github.com/99designs/gqlgen/graphql/playground"
+	"github.com/google/uuid"
 	_ "github.com/joho/godotenv/autoload"
 	"github.com/sirupsen/logrus"
 	"github.com/vektah/gqlparser/v2/gqlerror"
@@ -27,19 +28,20 @@ func main() {
 	srv.SetErrorPresenter(func(ctx context.Context, e error) *gqlerror.Error {
 		err := graphql.DefaultErrorPresenter(ctx, e)
 		logger.Logger.WithFields(logrus.Fields{
-			"message":    err.Message,
-			"path":       err.Path,
-			"locations":  err.Locations,
-			"extensions": err.Extensions,
-			"rule":       err.Rule,
+			"message":       err.Message,
+			"path":          err.Path,
+			"locations":     err.Locations,
+			"extensions":    err.Extensions,
+			"rule":          err.Rule,
+			"invocation_id": ctx.Value("invocation_id"),
 		}).Error()
 		return err
 	})
-	// log query
+	// log query and add an invocation_id for tracing
 	srv.AroundResponses(func(ctx context.Context, next graphql.ResponseHandler) *graphql.Response {
 		oc := graphql.GetOperationContext(ctx)
 		logger.Logger.Infof(oc.RawQuery)
-		resp := next(ctx)
+		resp := next(context.WithValue(ctx, "invocation_id", uuid.New()))
 		return resp
 	})
 	http.Handle("/", playground.Handler("GraphQL playground", "/query"))
