@@ -5,7 +5,7 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/backoff"
 	"google.golang.org/grpc/credentials/insecure"
-	_ "google.golang.org/grpc/encoding/gzip"
+	"google.golang.org/grpc/encoding/gzip"
 	"google.golang.org/grpc/keepalive"
 	"google.golang.org/protobuf/types/known/emptypb"
 	"google.golang.org/protobuf/types/known/wrapperspb"
@@ -61,7 +61,7 @@ func GetCustomer(customerId string) (*model.Customer, error) {
 		ctx,
 		wrapperspb.String(customerId),
 		grpc.WaitForReady(true),
-		grpc.UseCompressor("gzip"))
+		grpc.UseCompressor(gzip.Name))
 }
 
 func GetAllCustomers() (*service.GetAllCustomersResponse, error) {
@@ -71,5 +71,5 @@ func GetAllCustomers() (*service.GetAllCustomersResponse, error) {
 		ctx,
 		&emptypb.Empty{},
 		grpc.WaitForReady(true),
-		grpc.UseCompressor("gzip"))
+		grpc.UseCompressor(gzip.Name))
 }

@@ -5,7 +5,7 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/backoff"
 	"google.golang.org/grpc/credentials/insecure"
-	_ "google.golang.org/grpc/encoding/gzip"
+	"google.golang.org/grpc/encoding/gzip"
 	"google.golang.org/grpc/keepalive"
 	"google.golang.org/protobuf/types/known/emptypb"
 	"google.golang.org/protobuf/types/known/wrapperspb"
@@ -61,7 +61,7 @@ func GetOrder(orderId string) (*model.Order, error) {
 		ctx,
 		wrapperspb.String(orderId),
 		grpc.WaitForReady(true),
-		grpc.UseCompressor("gzip"))
+		grpc.UseCompressor(gzip.Name))
 }
 
 func GetAllOrders() (*service.GetAllOrdersResponse, error) {
@@ -71,5 +71,5 @@ func GetAllOrders() (*service.GetAllOrdersResponse, error) {
 		ctx,
 		&emptypb.Empty{},
 		grpc.WaitForReady(true),
-		grpc.UseCompressor("gzip"))
+		grpc.UseCompressor(gzip.Name))
 }
