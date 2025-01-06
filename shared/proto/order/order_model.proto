@@ -1,0 +1,18 @@
+syntax = 'proto3';
+import "customer/customer_model.proto";
+import "product/product_model.proto";
+import "common/enum_model.proto";
+
+package order;
+
+option go_package = "shared/model";
+
+message Order {
+  string order_id = 1;
+  customer.Customer customer = 2;
+  repeated product.Product products = 3;
+  double total = 4;
+  common.OrderStatus status = 5;
+  common.PaymentMethod payment_method = 6;
+  string created_at = 7;
+}

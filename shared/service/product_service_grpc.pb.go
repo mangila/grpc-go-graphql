@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v5.29.2
-// source: product.service.proto
+// source: product/product_service.proto
 
 package service
 
@@ -22,8 +22,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ProductQueryService_GetProduct_FullMethodName     = "/model.ProductQueryService/getProduct"
-	ProductQueryService_GetAllProducts_FullMethodName = "/model.ProductQueryService/getAllProducts"
+	ProductQueryService_GetProduct_FullMethodName     = "/product.ProductQueryService/getProduct"
+	ProductQueryService_GetAllProducts_FullMethodName = "/product.ProductQueryService/getAllProducts"
 )
 
 // ProductQueryServiceClient is the client API for ProductQueryService service.
@@ -145,7 +145,7 @@ func _ProductQueryService_GetAllProducts_Handler(srv interface{}, ctx context.Co
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var ProductQueryService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "model.ProductQueryService",
+	ServiceName: "product.ProductQueryService",
 	HandlerType: (*ProductQueryServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -158,13 +158,13 @@ var ProductQueryService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "product.service.proto",
+	Metadata: "product/product_service.proto",
 }
 
 const (
-	ProductCommandService_CreateProduct_FullMethodName = "/model.ProductCommandService/createProduct"
-	ProductCommandService_UpdateProduct_FullMethodName = "/model.ProductCommandService/updateProduct"
-	ProductCommandService_DeleteProduct_FullMethodName = "/model.ProductCommandService/deleteProduct"
+	ProductCommandService_CreateProduct_FullMethodName = "/product.ProductCommandService/createProduct"
+	ProductCommandService_UpdateProduct_FullMethodName = "/product.ProductCommandService/updateProduct"
+	ProductCommandService_DeleteProduct_FullMethodName = "/product.ProductCommandService/deleteProduct"
 )
 
 // ProductCommandServiceClient is the client API for ProductCommandService service.
@@ -319,7 +319,7 @@ func _ProductCommandService_DeleteProduct_Handler(srv interface{}, ctx context.C
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var ProductCommandService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "model.ProductCommandService",
+	ServiceName: "product.ProductCommandService",
 	HandlerType: (*ProductCommandServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -336,5 +336,5 @@ var ProductCommandService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "product.service.proto",
+	Metadata: "product/product_service.proto",
 }

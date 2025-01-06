@@ -1,0 +1,18 @@
+type Product {
+    product_id: ID!
+    name: String!
+    description: String
+    price: Float!
+    stock: Int!
+}
+
+extend type Query {
+    getProduct(product_id: ID!): Product
+    getAllProducts: [Product!]
+}
+
+extend type Mutation {
+    createProduct(name: String!, description: String, price: Float!, stock: Int!): Product
+    updateProduct(product_id: ID!, name: String, description: String, price: Float, stock: Int): Product
+    deleteProduct(product_id: ID!): Boolean
+}

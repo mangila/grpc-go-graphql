@@ -1,0 +1,11 @@
+syntax = 'proto3';
+
+package customer;
+
+option go_package = "shared/model";
+
+message Address {
+  string street = 1;
+  string city = 2;
+  string country = 3;
+}

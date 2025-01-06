@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v5.29.2
-// source: customer.service.proto
+// source: customer/customer_service.proto
 
 package service
 
@@ -22,8 +22,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	CustomerQueryService_GetCustomer_FullMethodName     = "/model.CustomerQueryService/getCustomer"
-	CustomerQueryService_GetAllCustomers_FullMethodName = "/model.CustomerQueryService/getAllCustomers"
+	CustomerQueryService_GetCustomer_FullMethodName     = "/customer.CustomerQueryService/getCustomer"
+	CustomerQueryService_GetAllCustomers_FullMethodName = "/customer.CustomerQueryService/getAllCustomers"
 )
 
 // CustomerQueryServiceClient is the client API for CustomerQueryService service.
@@ -145,7 +145,7 @@ func _CustomerQueryService_GetAllCustomers_Handler(srv interface{}, ctx context.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var CustomerQueryService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "model.CustomerQueryService",
+	ServiceName: "customer.CustomerQueryService",
 	HandlerType: (*CustomerQueryServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -158,13 +158,13 @@ var CustomerQueryService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "customer.service.proto",
+	Metadata: "customer/customer_service.proto",
 }
 
 const (
-	CustomerCommandService_CreateCustomer_FullMethodName = "/model.CustomerCommandService/createCustomer"
-	CustomerCommandService_UpdateCustomer_FullMethodName = "/model.CustomerCommandService/updateCustomer"
-	CustomerCommandService_DeleteCustomer_FullMethodName = "/model.CustomerCommandService/deleteCustomer"
+	CustomerCommandService_CreateCustomer_FullMethodName = "/customer.CustomerCommandService/createCustomer"
+	CustomerCommandService_UpdateCustomer_FullMethodName = "/customer.CustomerCommandService/updateCustomer"
+	CustomerCommandService_DeleteCustomer_FullMethodName = "/customer.CustomerCommandService/deleteCustomer"
 )
 
 // CustomerCommandServiceClient is the client API for CustomerCommandService service.
@@ -320,7 +320,7 @@ func _CustomerCommandService_DeleteCustomer_Handler(srv interface{}, ctx context
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var CustomerCommandService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "model.CustomerCommandService",
+	ServiceName: "customer.CustomerCommandService",
 	HandlerType: (*CustomerCommandServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -337,5 +337,5 @@ var CustomerCommandService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "customer.service.proto",
+	Metadata: "customer/customer_service.proto",
 }

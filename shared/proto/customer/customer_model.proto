@@ -1,13 +1,14 @@
 syntax = 'proto3';
+import "customer/address_model.proto";
 
-package model;
+package customer;
 
 option go_package = "shared/model";
 
 message Customer {
-  string id = 1;
+  string customer_id = 1;
   string name = 2;
   string email = 3;
   string phone = 4;
-  string address = 5;
+  customer.Address address = 5;
 }

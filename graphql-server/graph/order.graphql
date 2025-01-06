@@ -1,0 +1,20 @@
+type Order {
+    order_id: ID!
+    customer: Customer!
+    products: [Product!]!
+    total: Float!
+    status: String!
+    payment_method: String!
+    created_at: String!
+}
+
+extend type Query {
+    getOrder(order_id: ID!): Order
+    getAllOrders: [Order!]
+}
+
+extend type Mutation {
+    createOrder(customerId: ID!, productIds: [ID!]!, total: Float!, status: String!): Order
+    updateOrder(order_id: ID!, status: String): Order
+    deleteOrder(order_id: ID!): Boolean
+}

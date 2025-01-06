@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v5.29.2
-// source: order.service.proto
+// source: order/order_service.proto
 
 package service
 
@@ -22,8 +22,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	OrderQueryService_GetOrder_FullMethodName     = "/model.OrderQueryService/getOrder"
-	OrderQueryService_GetAllOrders_FullMethodName = "/model.OrderQueryService/getAllOrders"
+	OrderQueryService_GetOrder_FullMethodName     = "/order.OrderQueryService/getOrder"
+	OrderQueryService_GetAllOrders_FullMethodName = "/order.OrderQueryService/getAllOrders"
 )
 
 // OrderQueryServiceClient is the client API for OrderQueryService service.
@@ -145,7 +145,7 @@ func _OrderQueryService_GetAllOrders_Handler(srv interface{}, ctx context.Contex
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var OrderQueryService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "model.OrderQueryService",
+	ServiceName: "order.OrderQueryService",
 	HandlerType: (*OrderQueryServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -158,13 +158,13 @@ var OrderQueryService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "order.service.proto",
+	Metadata: "order/order_service.proto",
 }
 
 const (
-	OrderCommandService_CreateOrder_FullMethodName = "/model.OrderCommandService/createOrder"
-	OrderCommandService_UpdateOrder_FullMethodName = "/model.OrderCommandService/updateOrder"
-	OrderCommandService_DeleteOrder_FullMethodName = "/model.OrderCommandService/deleteOrder"
+	OrderCommandService_CreateOrder_FullMethodName = "/order.OrderCommandService/createOrder"
+	OrderCommandService_UpdateOrder_FullMethodName = "/order.OrderCommandService/updateOrder"
+	OrderCommandService_DeleteOrder_FullMethodName = "/order.OrderCommandService/deleteOrder"
 )
 
 // OrderCommandServiceClient is the client API for OrderCommandService service.
@@ -319,7 +319,7 @@ func _OrderCommandService_DeleteOrder_Handler(srv interface{}, ctx context.Conte
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var OrderCommandService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "model.OrderCommandService",
+	ServiceName: "order.OrderCommandService",
 	HandlerType: (*OrderCommandServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -336,5 +336,5 @@ var OrderCommandService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "order.service.proto",
+	Metadata: "order/order_service.proto",
 }

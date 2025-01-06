@@ -47,6 +47,6 @@ clean-ui-server:
 # compile protos
 proto-compile-all: proto-compile-service proto-compile-model
 proto-compile-service:
-	 protoc --proto_path=shared/proto --go_out=paths=source_relative:./shared/service --go-grpc_out=paths=source_relative:./shared/service shared/proto/*.service.proto
+	 protoc --proto_path=shared/proto --go_out=. --go-grpc_out=. shared/proto/*/*_service.proto
 proto-compile-model:
-	protoc --proto_path=shared/proto --go_out=paths=source_relative:./shared/model shared/proto/*.model.proto
+	protoc --proto_path=shared/proto --go_out=. shared/proto/*/*_model.proto

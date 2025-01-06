@@ -1,11 +1,11 @@
 syntax = 'proto3';
 
-package model;
+package product;
 
 option go_package = "shared/model";
 
 message Product {
-  string id = 1;
+  string product_id = 1;
   string name = 2;
   string description = 3;
   double price = 4;
