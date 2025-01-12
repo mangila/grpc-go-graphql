@@ -48,7 +48,7 @@ func main() {
 	// log query and add an invocation-id for tracing
 	srv.AroundResponses(func(ctx context.Context, next graphql.ResponseHandler) *graphql.Response {
 		oc := graphql.GetOperationContext(ctx)
-		logger.Logger.Infof(oc.RawQuery)
+		logger.Logger.Info(oc.RawQuery)
 		ctx = metadata.AppendToOutgoingContext(
 			ctx,
 			"invocation-id", uuid.New().String(),

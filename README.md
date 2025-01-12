@@ -6,10 +6,8 @@ microservice impl using various technologies - golang project with workspace
 
 The ui that communicates with graphql-server
 
-* Bootstrapped with go-blueprint
-* UI components with [Fomantic-ui](https://fomantic-ui.com/)
-
-`go-blueprint create --name ui-server --framework gorilla/mux --driver none --advanced --feature htmx --git skip`
+* Next.js
+* MUI
 
 ## graphql-server
 
