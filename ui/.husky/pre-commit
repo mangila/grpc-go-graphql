@@ -1,2 +1,2 @@
 npm test
-tsc --noEmit
+tsc src/tsconfig.js --noEmit
