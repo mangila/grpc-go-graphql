@@ -1,13 +1,12 @@
 {
-  "name": "ui-admin",
+  "name": "ui",
   "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "prepare": "cd .. && husky ui/.husky"
+    "lint": "next lint"
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",

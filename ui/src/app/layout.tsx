@@ -2,8 +2,8 @@ import React from "react";
 import type {Metadata} from "next";
 import {AppRouterCacheProvider} from "@mui/material-nextjs/v13-appRouter";
 import {ThemeProvider} from "@mui/system";
-import theme from '../theme';
 import {CssBaseline} from "@mui/material";
+import {theme} from "@/theme";
 
 export const metadata: Metadata = {
     title: "Mangila@Github",
