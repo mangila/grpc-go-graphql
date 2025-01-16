@@ -34,7 +34,7 @@ func InitCustomerClient(customerServiceAddr string) {
 		},
 	}
 	keepaliveParams := keepalive.ClientParameters{
-		Time:                10 * time.Second, // Ping server every 10 seconds if no activity
+		Time:                30 * time.Second, // Ping server every 30 seconds if no activity
 		Timeout:             5 * time.Second,  // Wait 5 seconds for ping ack before assuming connection is dead
 		PermitWithoutStream: true,             // Send keepalive pings even without active RPCs
 	}
