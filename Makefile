@@ -1,17 +1,17 @@
 # Root Makefile
-
 ORDER_SERVICE_DIR := order-service
 CUSTOMER_SERVICE_DIR := customer-service
 PRODUCT_SERVICE_DIR := product-service
 GRAPHQL_SERVER_DIR := graphql-server
+K8S_NAMESPACE := github
 
 # Apply k8s definitions
 minikube-apply-resources:
 	minikube kubectl -- apply -f scripts/config-k8s.yml
-	minikube kubectl -- apply -f customer-service/k8s.yml
-	minikube kubectl -- apply -f graphql-server/k8s.yml
-	minikube kubectl -- apply -f order-service/k8s.yml
-	minikube kubectl -- apply -f product-service/k8s.yml
+	minikube kubectl -- apply -f $(CUSTOMER_SERVICE_DIR)/k8s.yml
+	minikube kubectl -- apply -f $(GRAPHQL_SERVER_DIR)/k8s.yml
+	minikube kubectl -- apply -f $(ORDER_SERVICE_DIR)/k8s.yml
+	minikube kubectl -- apply -f $(PRODUCT_SERVICE_DIR)/k8s.yml
 
 # run from root file
 run-order-service:
