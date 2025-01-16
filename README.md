@@ -6,6 +6,10 @@ microservice impl using various technologies - golang project with workspace
 
 The ui that communicates with graphql-server
 
+``
+go work init ./customer-service ./graphql-server ./order-service ./product-service ./shared
+``
+
 * Next.js
 * MUI
 
