@@ -35,4 +35,8 @@ Unary gRPC service with a SQLite database that holds the product domain
 
 library with shared go files for the project
 
+## scripts
+
+script files
+
 
