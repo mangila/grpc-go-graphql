@@ -2,7 +2,7 @@
 # https://github.com/github/gitignore/blob/main/community/Golang/Go.AllowList.gitignore
 #
 # Binaries for programs and plugins
-.idea
+**/.idea
 *.exe
 *.exe~
 *.dll
@@ -26,7 +26,7 @@ go.work.sum
 # .env - nothing secret here.
 
 # Go workspace file
-tmp/
+**/tmp
 
 # IDE specific files
 .vscode
@@ -34,12 +34,12 @@ tmp/
 # .env file
 
 # Project build
-main
+**/main
 
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
+**/node_modules
 /.pnp
 .pnp.*
 .yarn/*
@@ -48,15 +48,13 @@ main
 !.yarn/releases
 !.yarn/versions
 
-# testing
-/coverage
 
 # next.js
-/.next/
-/out/
+**/.next/
+**/out/
 
 # production
-/build
+**/build
 
 # misc
 .DS_Store
